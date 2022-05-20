@@ -2,7 +2,6 @@ import Layout from '../components/Layout';
 import { getCampusesFromDb } from '../db';
 
 function Campuses({ results, lastUpdate }) {
-  // const generationDate = new Date();
   return (
     <Layout>
       <h2>La liste des campus :</h2>
