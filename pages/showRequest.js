@@ -23,14 +23,16 @@ function showRequest({ bodyString, headers, query }) {
 export default showRequest;
 
 export async function getServerSideProps(context) {
+  context.res.setHeader(
+    'Cache-Control',
+    'public, s-maxage=10, stale-while-revalidate=59'
+  );
+
   const body = await getRawBody(context.req);
   console.log(context.req.method, body.toString('utf-8'));
 
   const headers = context.req.headers;
-  console.log(context.req.headers);
-
   const query = context.query;
-  console.log(context.query);
 
   const bodyString = body.toString('utf-8');
   return {

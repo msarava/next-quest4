@@ -22,6 +22,11 @@ export default function Layout({ children, pageTitle }) {
             <a className={styles.navlink} href='/terms'>
               Terms of use
             </a>
+          </Link>{' '}
+          <Link href='/Campuses'>
+            <a className={styles.navlink} href='/Campuses'>
+              Campuses
+            </a>
           </Link>
           <Link href='/showRequest'>
             <a className={styles.navlink} href='/showRequest'>
