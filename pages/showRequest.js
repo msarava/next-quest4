@@ -6,17 +6,19 @@ function showRequest({ bodyString, headers, query, lastUpdate }) {
   return (
     <Layout>
       <div>
-        headers : <pre>{JSON.stringify(headers)}</pre>
+        headers : <pre>{JSON.stringify(headers, null, 2)}</pre>
       </div>
 
       <div>
         query :
         <pre>
-          {JSON.stringify(query) === '{}' ? 'no query' : JSON.stringify(query)}
+          {JSON.stringify(query) === '{}'
+            ? 'No query sent'
+            : JSON.stringify(query)}
         </pre>
       </div>
       <div>
-        body : <pre>{JSON.stringify(bodyString)}</pre>
+        body : <pre>{bodyString}</pre>
       </div>
       <div className='lastUpdate'>Last update : {lastUpdate}</div>
     </Layout>
@@ -37,7 +39,7 @@ export async function getServerSideProps(context) {
   let bodyString = '';
 
   if (context.req.method === 'GET') {
-    bodyString = 'There is no body in GET request';
+    bodyString = 'There is no body in this GET request';
   } else if (context.req.method === 'POST') {
     const body = await getRawBody(context.req);
     // console.log(context.req.method, body.toString('utf-8'));
